@@ -17,9 +17,11 @@ def main():
 
     try:
         with open(sys.argv[1], 'r') as file:
+            if not file.read():
+                sys.exit(1)
             for line in file:
                 try:
-                    num = abs(int(line))
+                    num = int(line)
 
                     if num > 1:
                         print(f"{num}={num}*1")
