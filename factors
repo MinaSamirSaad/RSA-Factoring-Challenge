@@ -1,14 +1,22 @@
 #!/usr/bin/python3
 ''' 
-
-
-    """actorize as many numbers as possible into a product of two smaller numbers
+    """factorize as many numbers as possible into a product of two smaller numbers
     """
 '''
 import sys
 
 
-def main():
+def factorize_number(number):
+    ''' 
+    """factorize as many numbers as possible into a product of two smaller numbers
+    """
+'''
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return i
+
+
+def factorize_file(fileName):
     '''
     """Factorize as many numbers as possible into a product of two smaller numbers.
 
@@ -16,23 +24,26 @@ def main():
         number: 0  
     """    
     '''
-
     try:
-        with open(sys.argv[1], 'r') as file:
+        with open(fileName, 'r') as file:
             for line in file:
                 try:
-                    num = int(line.strip())
-
-                    if num > 1:
-                        print(f"{num}={num}*1")
+                    number = int(line.strip())
+                    if number <= 1:
+                        print(f"Invalid number: {number}")
+                        continue
+                    num = factorize_number(number)
+                    print(f"{number}={number // num}*{num}")
                 except ValueError:
                     print(f"Invalid input: {line.strip()}")
     except FileNotFoundError:
-        sys.exit(1)
-    return 0
+        print(f"File not found: {fileName}")
+
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if len(sys.argv) != 2:
+        print("Usage: factors <file>")
         sys.exit(1)
 
-    main()
+    fileName = sys.argv[1]
+    factorize_file(fileName)
