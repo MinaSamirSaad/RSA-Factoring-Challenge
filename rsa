@@ -5,6 +5,23 @@
 '''
 import sys
 
+def factors(n):    # (cf. https://stackoverflow.com/a/15703327/849891)
+    j = 2
+    f = []
+    find_prime = False
+    while n > 1:
+        find_prime = False
+        for i in range(j, int((n+1)**0.5) + 1):
+            if n % i == 0:
+                n = n//i
+                j = i
+                find_prime = True
+                f.append(i)
+                break
+        if n > 1 and not find_prime:
+            f.append(n)
+            break
+    return list(set(f))
 
 def main():
     '''
@@ -20,9 +37,9 @@ def main():
             for line in file:
                 try:
                     num = int(line)
-
-                    if num > 1:
-                        print(f"{num}={num}*1")
+                    fact = factors(num)
+                    if fact and len(fact) == 2:
+                        print(f"{num}={fact[0]}*{fact[1]}")
                 except ValueError:
                     print(f"Invalid input: {line.strip()}")
     except FileNotFoundError:
