@@ -19,10 +19,13 @@ def main():
         with open(sys.argv[1], 'r') as file:
             for line in file:
                 try:
-                    num = int(line.strip())
-
-                    if num > 1:
-                        print(f"{num}={num}*1")
+                    line = line.strip()
+                    if line.isdigit():
+                        num = int(line.strip())
+                        if num > 1:
+                            print(f"{num}={num}*1")
+                        else:
+                            continue
                 except ValueError:
                     print(f"Invalid input: {line.strip()}")
     except FileNotFoundError:
