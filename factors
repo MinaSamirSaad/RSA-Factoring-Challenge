@@ -25,9 +25,11 @@ def main():
 
     for line in the_file:
         try:
-            num = int(line)
+            num = int(line.split('\n')[0])
             if num > 1:
                 print("{:d}={:d}*{:d}".format(num, num, 1))
+            else:
+                break
         except Exception:
             continue
     the_file.close()
