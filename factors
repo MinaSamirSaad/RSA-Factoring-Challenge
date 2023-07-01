@@ -13,7 +13,7 @@ def main():
         number: 0  
     """    
     '''
-    if len(argv) != 2:
+    if len(argv) < 2:
         print("there is no file to read",file=stderr)
         exit()
 
@@ -25,9 +25,9 @@ def main():
 
     for line in the_file:
         try:
-            num = int(line.strip())
+            num = int(line)
             if num > 1:
-                print("{}={}*{}".format(num, num, 1))
+                print("{:d}={:d}*{:d}".format(num, num, 1))
         except Exception:
             continue
     the_file.close()
