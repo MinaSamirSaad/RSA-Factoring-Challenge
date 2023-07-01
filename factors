@@ -19,7 +19,7 @@ def main():
         with open(sys.argv[1], 'r') as file:
             for line in file:
                 try:
-                    num = int(line)
+                    num = abs(int(line))
 
                     if num > 1:
                         print(f"{num}={num}*1")
