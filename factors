@@ -15,25 +15,24 @@ def main():
         number: 0  
     """    
     '''
-    if len(argv) < 2:
-        exit()
 
     try:
         the_file = open(argv[1], 'r')
     except Exception:
-        exit()
+        exit(1)
 
     for line in the_file:
         try:
             num = int(line.split('\n')[0])
             if num > 1:
-                print("{:d}={:d}*{:d}".format(num, num, 1))
-            else:
-                break
+                print(f"{num}={num}*1")
         except Exception:
             continue
     the_file.close()
     return 0
 
 if __name__ == '__main__':
+    if len(argv) < 2:
+        exit(1)
+
     main()
