@@ -3,7 +3,9 @@
     """actorize as many numbers as possible into a product of two smaller numbers
     """
 '''
-from sys import argv, stderr
+
+
+from sys import argv
 
 def main():
     '''
@@ -14,13 +16,11 @@ def main():
     """    
     '''
     if len(argv) < 2:
-        print("there is no file to read",file=stderr)
         exit()
 
     try:
         the_file = open(argv[1], 'r')
-    except FileNotFoundError:
-        print("no file to read",file=stderr)
+    except Exception:
         exit()
 
     for line in the_file:
